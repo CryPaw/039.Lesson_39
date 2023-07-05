@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fetchOrders() {
+            fetch('http://localhost:9000/orders')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function fetchOrdersCORS() {
+            fetch('http://localhost:8000/orders')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function addOrder() {
+            fetch('http://localhost:9000/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: 4,
+                item: "Laptop 2",
+                units: 10,
+                price: 23455.34
+            })
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function addOrderCORS() {
+            fetch('http://localhost:8000/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: 4,
+                item: "Laptop 5",
+                units: 50,
+                price: 78455.34
+            })
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function getOrdersCredentialsCORS() {
+            fetch('http://localhost:8000/orders', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Authorization': 'Bearer 1234567890'
+                }
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function deleteOrder() {
+            fetch('http://localhost:9000/orders', {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function deleteOrderCORS() {
+            fetch('http://localhost:8000/orders', {
+                method: 'DELETE',
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function putOrder() {
+            fetch('http://localhost:9000/orders', {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: 2,
+                item: "MacBook Pro",
+                units: 3,
+                price: 180764
+            })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+
+        function putOrderCORS() {
+            fetch('http://localhost:8000/orders', {
+                method: 'PUT',
+                headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: 2,
+                item: "MacBook Pro",
+                units: 3,
+                price: 180764
+            })
+            })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+    </script>
+</head>
+<body>
+    <div><button onclick="fetchOrders()">Get orders (same domain)</button></div>
+    <div><button onclick="fetchOrdersCORS()">Get orders (other domain)</button></div>
+    <div><button onclick="addOrder()">Add orders (same domain)</button></div>
+    <div><button onclick="addOrderCORS()">Add orders (other domain)</button></div>
+    <div><button onclick="getOrdersCredentialsCORS()">Add orders (other domain with credentials)</button></div>
+    <div><button onclick="deleteOrder()">Delete order (same domain)</button></div>
+    <div><button onclick="deleteOrderCORS()">Delete order (other domain)</button></div>
+    <div><button onclick="putOrder()">Put order (same domain)</button></div>
+    <div><button onclick="putOrderCORS()">Put order (other domain)</button></div>
+</body>
+</html>
