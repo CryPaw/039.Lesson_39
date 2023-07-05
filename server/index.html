@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function fetchOrders() {
+            fetch('http://localhost:8000/orders')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.log(error));
+        }
+    </script>
+</head>
+<body>
+    <div><button onclick="fetchOrders()">Fetch orders (same domain)</button></div>
+</body>
+</html>
